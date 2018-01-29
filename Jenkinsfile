@@ -5,17 +5,12 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
-            dir('task-1/grader') {
+            dir('my-app') {
                 sh 'mvn clean package'
                 archiveArtifacts(artifacts: 'target/*.jar')
             }
           }
         }
-      }
-    }
-    stage('Approval') {
-      steps {
-        input 'Continue?'
       }
     }
     stage('Clean Up') {
